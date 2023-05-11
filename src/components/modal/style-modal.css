@@ -1,0 +1,59 @@
+.btn-danger{
+    background-color:#fc3a3adf;
+    border: 3px solid #e70101;
+    color: black;
+}
+
+
+.btn-danger:hover{
+    background-color:#e70101;
+    border: 3px solid #e70101;
+    color: #ffffff;
+}
+
+.btn-primary{
+    background-color:#3aa5fcb0;
+    border: 3px solid #0159e7;
+    color: black;
+}
+
+
+.btn-primary:hover{
+    background-color:#0159e7;
+    border: 3px solid #0159e7;
+    color: #ffffff;
+}
+
+.btn-secondary{
+    background-color:#595e6179;
+    border: 3px solid #5d5d5d;
+    color: black;
+}
+
+
+.btn-secondary:hover{
+    background-color:#5d5d5d;
+    border: 3px solid #5d5d5d;
+    color: #ffffff;
+}
+
+.ratingValue {
+    text-align: center;
+    font-size: 14pt;
+    font-weight: 700;
+}
+
+
+.unitImgModal{
+    width: 90%; 
+    margin-bottom: 5px;
+}
+
+.FIO{
+    font-size: 14pt;
+    font-weight: 700;
+}
+
+.modal-title{
+    font-weight: 700;
+}

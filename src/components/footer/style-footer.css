@@ -1,0 +1,32 @@
+footer{
+    
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.68)), url(./../../img/footer_mini.png);
+}
+
+.logo-textFooter{
+    display: flex;
+}
+
+.logo-textFooter a{
+    margin-left: 5%;
+    margin-top: 8%;
+    color:#E9E4EA;
+}
+
+.logoSGSPU_footer {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 30%;
+}
+
+.img {
+    align-items: center;
+}
+
+footer p {
+    color:#E9E4EA;
+}
+
+footer b{
+    color:#E9E4EA;
+}

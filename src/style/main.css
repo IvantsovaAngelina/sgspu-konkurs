@@ -1,0 +1,16 @@
+html,
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+
+	font-family: 'DM Sans', sans-serif;
+	letter-spacing: -0.5px;
+    background-image:url(../img/fon.png);
+}
+
+main {
+    flex-grow:1;
+    margin: 0;
+    padding-top: 15px;
+}

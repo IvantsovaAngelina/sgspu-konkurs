@@ -1,0 +1,30 @@
+.contact{
+    margin-top: 3%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(./../../img/fon-contact.png);
+    padding: 15px 25px 25px 15px;
+}
+
+.contact h1{
+    text-align: center;
+    font-weight: 700;
+    font-size: 20pt;
+    line-height: 44px;
+    text-transform: uppercase;
+    color: #E9E4EA;
+}
+
+.contact b{
+    text-align: center;
+    font-weight: 700;
+    font-size: 14pt;
+    line-height: 39px;
+    color: #FFFFFF;
+}
+
+.contact p{
+    font-weight: 400;
+    font-size: 14pt;
+    line-height: 39px;
+    color: #FFFFFF;
+    margin: 0;
+}

@@ -1,0 +1,83 @@
+summary{
+    height: 150px;
+}
+
+.Three[index$="0"] details > summary {
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    font-size: 32pt;
+    color: #ECD666;
+    text-shadow: 0px -4px 6px rgba(255, 212, 187, 0.264), 0px 1px 6px #ffd4bb82;
+    background-image: url('./../../img/digitalPain.png');
+    background-size: cover;
+    
+  }
+
+.Three[index$="1"] details > summary {
+    margin-top: 1%;
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    font-size: 32pt;
+    color: #AEDBF4;
+    text-shadow: 0px -4px 6px rgba(203, 255, 252, 0.167), 0px 1px 6px #cbfffc8f;
+    background-image: url('./../../img/kollage.png');
+    background-size: cover;
+}  
+
+.Three[index$="2"] details > summary {
+    margin-top: 1%;
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    font-size: 32pt;
+    color: #FFBBA6;
+    text-shadow: 0px -4px 6px rgba(255, 106, 106, 0.29), 0px 1px 6px #ff6a6a74;
+    background-image: url('./../../img/origIdea.png');
+    background-size: cover;
+}
+
+.Three[index$="3"] details > summary {
+    margin-top: 1%;
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    font-size: 32pt;
+    color: #C3A6FF;
+    text-shadow: 0px -4px 6px rgba(106, 121, 255, 0.29), 0px 1px 6px #6a79ff6f;   
+    background-image: url('./../../img/infograf.png');
+    background-size: cover;
+}
+  
+  /* details > div {
+    border: 1px #ccc solid;
+    padding: 10px;
+    
+  } */
+  
+details p {
+    padding-top: 1%;
+    font-weight: 400;
+    font-size: 14pt;
+}

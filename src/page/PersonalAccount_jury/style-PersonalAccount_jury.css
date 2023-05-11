@@ -1,0 +1,90 @@
+.title-user {
+  font-weight: 700;
+  font-size: 20pt;
+  line-height: 49px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #1A2F3E;
+  margin: 0;
+}
+
+.errorMassage {
+  text-align: center;
+  font-size: 14pt;
+  font-weight: 400;
+}
+
+label {
+  font-weight: 700;
+  font-size: 14pt;
+  color: #000000;
+  display: block;
+  margin-top: 3%;
+}
+
+input{
+margin-top: 1%;
+box-sizing: border-box;
+font-size: 14pt;
+padding-top: 0.5%;
+padding-bottom: 0.5%;
+text-align: center;
+background: #D9D9D9;;
+border: 1px solid #000000;
+border-radius: 64px;
+width: 100%;
+}
+
+.form-check{
+  padding-top: 5%;
+  margin-left: 5%;
+  display: flex;
+  align-items: flex-start;
+  font-size: 14pt;
+  
+}
+
+.form-check-label{
+  display: inline-block;
+  font-weight: 400;
+  font-size: inherit;
+  line-height:1em; 
+  padding-left: 1.5%;
+}
+
+.form-check-input {
+  display: flex;
+  align-items: center;
+  width: 1em;
+  height: 1em;
+  margin-top: 3%;
+}
+
+.btn-submit {
+  color: #A8003C;
+  background: #FFBCE4;
+  border: 3px solid #FC1367;
+  border-radius: 13px;
+  font-weight: 600;
+  margin-bottom: 4%;
+}
+
+.fileUp{
+padding-left: 3%;
+padding-right: 3%;
+}
+
+.btn-submitFile{
+width: 60%;
+margin-top: 1%;
+margin-bottom: 7%;
+color: #A8003C;
+background: #FFBCE4;
+border: 3px solid #FC1367;
+border-radius: 13px;
+font-weight: 600;
+}
+
+.userId {
+display: none;
+}
