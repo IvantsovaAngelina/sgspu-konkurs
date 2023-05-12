@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import './upload-style.css';
 
-
 const UploadFile = () => {
   const [fileData, setFileData] = useState(null);
   const token = localStorage.getItem("token");

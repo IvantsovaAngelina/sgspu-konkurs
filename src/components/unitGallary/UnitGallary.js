@@ -22,26 +22,10 @@ const UnitGallary = () => {
       {unitImages.map((item) => {
         const imageSrc = `${item.base64}`;
         return (
-          <div
-            className="unitPic"
-            data-bs-toggle="modal" 
-            data-bs-target={`#id${item.id}`}
-          >
-            <img
-              className="unitImg"
-              src={imageSrc}
-            />
+          <div className="unitPic" data-bs-toggle="modal" data-bs-target={`#id${item.id}`}>
+            <img className="unitImg" src={imageSrc} />
             {item && (
-              <ModalWindow
-                img={imageSrc}
-                idName ={`id${item.id}`}
-                id = {item.id}
-                ratingValue = {item.ratingValue}
-                nomination = {item.nominationId}
-                user = {item.userId}
-                name = {item.name}
-                statusId = {item.statusId}
-                size = {item.size}
+              <ModalWindow img={imageSrc} idName ={`id${item.id}`} id = {item.id} ratingValue = {item.ratingValue} nomination = {item.nominationId} user = {item.userId} name = {item.name} statusId = {item.statusId} size = {item.size}
               />
             )}
           </div>

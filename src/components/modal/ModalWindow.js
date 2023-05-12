@@ -3,7 +3,6 @@ import axios from "axios";
 import jwt_decode from 'jwt-decode';
 import './style-modal.css'
 
-
 const ModalWindow = (props) => {
     const {img, user, nomination, idName, id, statusId, name, size} = props;
     const [liked, setLiked] = useState(false);
@@ -60,7 +59,6 @@ const ModalWindow = (props) => {
                 'Access-Control-Allow-Headers': '',
             }
         }).then((response) => {
-            console.log(response.data)
             setUserOrganization({
                 organization: response.data.description
             })
@@ -82,7 +80,6 @@ const ModalWindow = (props) => {
                 'Access-Control-Allow-Headers': '',
             }
         }).then((response) => {
-            console.log(response.data)
             setUserNomination({
                 nomin: response.data.name
             })
@@ -117,34 +114,6 @@ const ModalWindow = (props) => {
         getRole();
       }, []);
 
-
-      const updateUserRating = (newRating) => {
-        const data = {
-          id: id,
-          name: name ,
-          size: size,
-          base64:img,
-          ratingValue: newRating,
-          userId: user,
-          statusId: statusId,
-          nominationId:nomination
-        }
-        axios.post('http://127.0.0.1:8080/api/picture/update', data, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-            'Access-Control-Allow-Origin': '',
-            'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers': '',
-          }
-        })
-        .then((response) => {
-          console.log(`Успех для ${props.id}`);
-        }, (error) => {
-          console.log(error);
-        });
-      }
-      
       const plusLikes = () => {
         if (!liked) {
           const newRating = ratingValue + 1;
@@ -171,6 +140,33 @@ const ModalWindow = (props) => {
             updateUserRating(newRating);
           }
         }
+      }
+
+      const updateUserRating = (newRating) => {
+        const data = {
+          id: id,
+          name: name ,
+          size: size,
+          base64:img,
+          ratingValue: newRating,
+          userId: user,
+          statusId: statusId,
+          nominationId:nomination
+        }
+        axios.post('http://127.0.0.1:8080/api/picture/update', data, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '',
+            'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': '',
+          }
+        })
+        .then((response) => {
+          console.log(`Успех для ${props.id}`);
+        }, (error) => {
+          console.log(error);
+        });
       }
     
     const deletePic = () => {
