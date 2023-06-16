@@ -36,7 +36,7 @@ const PersonalAccountJury = () => {
     const userId = decodedToken.id;
   
     useEffect(() => {
-      axios.get(`http://127.0.0.1:8080/api/user/${id}`,{
+      axios.get(`http://45.8.97.195:8080/api/user/${id}`,{
         headers: {
           Authorization: `Bearer ${token}`,
         }}).then((res) => {
@@ -78,7 +78,7 @@ const PersonalAccountJury = () => {
         roleId: formData.roleId,
         birthday: formData.birthday,
       };
-      axios.post(`http://127.0.0.1:8080/api/user/update`, updatedUser, {
+      axios.post(`http://45.8.97.195:8080/api/user/update`, updatedUser, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
@@ -90,7 +90,6 @@ const PersonalAccountJury = () => {
         })
         .then((response) => {
           setData(response.data);
-          console.log(response.data);
           alert('Данные обновлены!');
         });
     };

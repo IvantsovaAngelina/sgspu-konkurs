@@ -1,5 +1,5 @@
 footer{
-    
+    grid-row: 3 / span 1;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.68)), url(./../../img/footer_mini.png);
 }
 

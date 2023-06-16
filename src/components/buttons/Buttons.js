@@ -29,9 +29,20 @@ function Buttons() {
   const nav = useNavigate();
   const { id } = useParams();
 
-  const navi = () => {
-    nav(`/account/${userId}`);
-    window.location.reload();
+  const navi = async () => {
+    const userResponse = await axios.get(`http://45.8.97.195:8080/api/user/${userId}`);
+      const roleId = userResponse.data.roleId;
+
+      if (roleId === 1) {
+        nav(`/accountadmin/${userId}`);
+        window.location.reload();
+      } else if (roleId === 2) {
+        nav(`/account/${userId}`);
+        window.location.reload();
+      } else if (roleId === 3) {
+        nav(`/accountjury/${userId}`);
+        window.location.reload();
+      }
 } 
 
   useEffect(() => {
@@ -47,7 +58,7 @@ function Buttons() {
         responseType: "json",
       };
       axios
-        .post("http://127.0.0.1:8080/api/user/find", { email: decodedToken.sub }, config)
+        .post("http://45.8.97.195:8080/api/user/find", { email: decodedToken.sub }, config)
         .then((response) => {
           setUserId(response.data[0].id);
         })

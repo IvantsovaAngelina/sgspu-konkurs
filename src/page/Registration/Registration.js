@@ -3,10 +3,10 @@ import Organization from '../../helpers/Organization';
 import { useForm } from 'react-hook-form';
 import { withHookFormMask } from 'use-mask-input';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style-registration.css'
 
-const Registration = () => {
+const Registration  = () => {
     const {
         register,
         watch,
@@ -16,8 +16,22 @@ const Registration = () => {
       });
 
     const [data, setData] = useState({});
+
+    const [role, setRole] = useState([]);
+
+    const nav =useNavigate()
+
+    useEffect(() => {
+        axios.get('http://45.8.97.195:8080/api/role/findAll')
+        .then(res => {
+            const rol = res.data;
+            setRole(rol);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }, []);
     
-    const navi = useNavigate()
     const handleSubmit = (event) => {
         event.preventDefault();
         const user = {
@@ -31,25 +45,26 @@ const Registration = () => {
         city: event.target.city.value,
         aboutMe: event.target.aboutMe.value,
         organizationId: event.target.organizationId.value,
-        roleId: event.target.roleId.value,
-        birthday: event.target.birthday.value
+        roleId: 2,
+        birthday: event.target.birthday.value,
+        faculty: event.target.faculty.value,
+        supervisorFullName: event.target.supervisorFullName.value,
+        supervisorPosition: event.target.supervisorPosition.value,
+        supervisorPhoneNumber: event.target.supervisorPhoneNumber.value,
         };
 
     
-        axios.post('http://127.0.0.1:8080/api/user/register', user, {
+        axios.post('http://45.8.97.195:8080/api/user/register', user, {
         headers: {
             'Content-Type': 'application/json',
         },
         })
         .then((response) => {
             setData(response.data);
-            console.log(response.data)
-            alert('Регистрация прошла успешно!')
-            navi('/')
+            alert('Пользователь создан!')
+            nav(`/`)
         });
   };
-
-  
 
   return (
     <main>
@@ -125,13 +140,13 @@ const Registration = () => {
 
                                 <div className='col-md-3'> 
                                     <label>
-                                        Повторите Пароль
+                                    Подтвердите Пароль
                                         <input type="password" name="secondPassword" 
                                         {...register('secondPassword', 
                                         {required: "Поле небходимо заполнить",
                                         validate: (val) => {
                                             if (watch('password') !== val) {
-                                            return "Повторите пароль правильно";
+                                            return "Неверный пароль";
                                             }
                                         },
                                         })}
@@ -220,6 +235,19 @@ const Registration = () => {
 
                                 <div className='col-md-3'> 
                                     <label>
+                                        Факультет
+                                        <input type="text" name="faculty"
+                                        {...register('faculty', 
+                                        {required: "Поле небходимо заполнить"
+                                        })}/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            
+                            <div className='row justify-content-center'>
+                                <div className='col-md-3'> 
+                                    <label>
                                         Дата рождения
                                         <input
                                         name="birthday"
@@ -233,33 +261,60 @@ const Registration = () => {
                                     {errors?.phone && <p>{errors?.phone?.message || "Поле небходимо заполнить" }</p>}
                                     </div>
                                 </div>
-                            </div>
-                            <div className='row justify-content-center'>
-                                <div className='col-md-6'> 
+
+                                <div className='col-md-3'> 
                                     <label>
-                                        О себе
+                                        О пользователе
                                         <input type="text" name="aboutMe" 
                                         {...register('aboutMe', 
                                         {required: "Поле небходимо заполнить"
                                         })}
                                         />
                                     </label>
-                                    <div style={{color: 'blue'}}>
-                                    {errors?.aboutMe && <p>{errors?.aboutMe?.message || "Поле небходимо заполнить" }</p>}
-                                    </div>
                                 </div>
                             </div>
+
                             <div className='row justify-content-center'>
                                 <div className='col-md-6'> 
-                                    <label className='roleid'>
-                                        roleId:
-                                        <input type="text" name="roleId" value='2' />
+                                    <label>
+                                        ФИО руководителя
+                                        <input type="text" name="supervisorFullName"
+                                        {...register('supervisorFullName', 
+                                        {required: "Поле небходимо заполнить"
+                                        })}/>
                                     </label>
                                 </div>
                             </div>
                             <div className='row justify-content-center'>
-                                <div className='col-md-6'> 
-                                <button className='btn-submit' type="submit">Зарегистрироваться</button>
+                                <div className='col-md-3'> 
+                                    <label>
+                                        Должность руководителя
+                                        <input type="text" name="supervisorPosition"
+                                        {...register('supervisorPosition', 
+                                        {required: "Поле небходимо заполнить"
+                                        })}/>
+                                    </label>
+                                </div>
+                                <div className='col-md-3'> 
+                                    <label>
+                                        Номер телефона руководителя
+                                        <input type="text" name="supervisorPhoneNumber" 
+                                        {...withHookFormMask(register('supervisorPhoneNumber'), 
+                                        ['8 999 999 99 99', '8 999 999 99 99'],
+                                        {required: "Поле небходимо заполнить"}
+                                        )}
+                                        />
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div className='row justify-content-center'>
+                                <div className='col-md-3'> 
+                                    
+                                </div>
+
+                                <div className='col-md-3'> 
+                                <button className='btn-add' type="submit">Создать пользователя</button>
                                 </div>
                             </div>
                         </div>
@@ -270,8 +325,7 @@ const Registration = () => {
     </main>
 
     
-    
-  );
+ );
 }
  
 export default Registration;
