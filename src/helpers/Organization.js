@@ -5,14 +5,15 @@ const Organization = () => {
   const [organization, setOrganization] = useState([]);
 
   useEffect(() => {
+    
     axios.get('http://45.8.97.195:8080/api/organization/findAll')
-      .then(res => {
+     .then(res => {
         const organization = res.data;
         setOrganization(organization);
-      })
-      .catch(error => {
+     })
+     .catch(error => {
         console.log(error);
-      });
+     });
   }, []);
 
   return (
