@@ -3,11 +3,11 @@ import { useForm } from 'react-hook-form';
 import { withHookFormMask } from 'use-mask-input';
 import axios from 'axios';
 import React, { useState, useEffect  } from 'react';
-import UploadFile from '../../components/uploadFile/UploadFile';
-import './style-PersonalAccount.css'
+import BtnAdmin from '../../components/adminPanel/BtnAdmin';
+import './style-PersonalAccountAdmin.css'
 import jwt_decode from 'jwt-decode';
 
-const PersonalAccountUser = () => {
+const PersonalAccountAdmin = () => {
   const [user, setUser] = useState({});
   const [data, setData] = useState({});
   const [organization, setOrganization] = useState([]);
@@ -29,10 +29,6 @@ const PersonalAccountUser = () => {
     organizationId: '',
     roleId: '',
     birthday: '',
-    faculty: '',
-    supervisorFullName: '',
-    supervisorPosition: '',
-    supervisorPhoneNumber: '',
   });
 
   const { id } = useParams();
@@ -61,10 +57,6 @@ const PersonalAccountUser = () => {
         organizationId: user.organizationId,
         roleId: user.roleId,
         birthday: user.birthday || '',
-        faculty: user.faculty,
-        supervisorFullName: user.supervisorFullName,
-        supervisorPosition: user.supervisorPosition,
-        supervisorPhoneNumber: user.supervisorPhoneNumber,
       });
     });
   }, [id]);
@@ -86,10 +78,6 @@ const PersonalAccountUser = () => {
       organizationId: formData.organizationId,
       roleId: formData.roleId,
       birthday: formData.birthday,
-      faculty: formData.faculty,
-      supervisorFullName: formData.supervisorFullName,
-      supervisorPosition:formData.supervisorPosition,
-      supervisorPhoneNumber: formData.supervisorPhoneNumber,
     };
     axios.post(`http://45.8.97.195:8080/api/user/update`, updatedUser, {
         headers: {
@@ -195,6 +183,11 @@ const PersonalAccountUser = () => {
                       type="text"
                       name="phone"
                       defaultValue={formData.phone}
+                      {...register('phone', { required: true })}
+                      {...withHookFormMask(
+                        register('phone'),
+                        ['8 999 999 99 99', '8 999 999 99 99']
+                      )}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
 />
                   </label>
@@ -229,26 +222,11 @@ const PersonalAccountUser = () => {
                     </select>
                   </label>
                 </div>
-                <div className="col-md-3">
-                  <label>
-                    Факультет
-                    <input type="text" name="faculty" defaultValue={formData.faculty} onChange={(e) => setFormData({...formData, faculty: e.target.value})}/>
-                  </label>
-                </div>
-              </div>
 
-              <div className="row justify-content-center">
                 <div className="col-md-3">
                   <label>
                     Дата рождения
                     <input type="date" name="birthday" defaultValue={formData.birthday} onChange={(e) => setFormData({...formData, birthday: e.target.value})}/>
-                  </label>
-                </div>
-
-                <div className="col-md-3">
-                  <label>
-                    О себе
-                    <input type="text" name="aboutMe" defaultValue={formData.aboutMe} onChange={(e) => setFormData({...formData, aboutMe: e.target.value})}/>
                   </label>
                 </div>
               </div>
@@ -256,29 +234,11 @@ const PersonalAccountUser = () => {
               <div className="row justify-content-center">
                 <div className="col-md-6">
                   <label>
-                  ФИО руководителя
-                    <input type="text" name="supervisorFullName" defaultValue={formData.supervisorFullName} onChange={(e) => setFormData({...formData, supervisorFullName: e.target.value})}/>
+                    О себе
+                    <input type="text" name="aboutMe" defaultValue={formData.aboutMe} onChange={(e) => setFormData({...formData, aboutMe: e.target.value})}/>
                   </label>
                 </div>
               </div>
-
-              <div className="row justify-content-center">
-                <div className="col-md-3">
-                  <label>
-                  Должность руководителя
-                    <input type="text" name="supervisorPosition" defaultValue={formData.supervisorPosition} onChange={(e) => setFormData({...formData, supervisorPosition: e.target.value})}/>
-                  </label>
-                </div>
-
-                <div className="col-md-3">
-                  <label>
-                  Номер телефона руководителя
-                    <input type="text" name="supervisorPhoneNumber" defaultValue={formData.supervisorPhoneNumber} onChange={(e) => setFormData({...formData, supervisorPhoneNumber: e.target.value})}/>
-                  </label>
-                </div>
-              </div>
-
-              
                 <div className='row justify-content-center'>
                     <div className='col-md-6'> 
                         <button className='btn-submit' type="submit">Обновить данные</button>
@@ -287,9 +247,9 @@ const PersonalAccountUser = () => {
             </div>
           </form>
         </div>
-        <UploadFile/>
+        <BtnAdmin/>
       </main>
     );
   }
  
-export default PersonalAccountUser
+export default PersonalAccountAdmin

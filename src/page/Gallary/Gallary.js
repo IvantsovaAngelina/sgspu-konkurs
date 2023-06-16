@@ -3,7 +3,7 @@ import { gallery } from '../../helpers/picsList';
 
 const Gallary = () => {
     return ( 
-        <main>
+        <main className='arhMain'>
         <div className='container'>
             <div className='row'>
                 <div className='col-md-12'>

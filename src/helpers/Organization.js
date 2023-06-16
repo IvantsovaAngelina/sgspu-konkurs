@@ -5,7 +5,7 @@ const Organization = () => {
   const [organization, setOrganization] = useState([]);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8080/api/organization/findAll')
+    axios.get('http://45.8.97.195:8080/api/organization/findAll')
       .then(res => {
         const organization = res.data;
         setOrganization(organization);

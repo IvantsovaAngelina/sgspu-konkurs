@@ -4,96 +4,17 @@ import jwt_decode from 'jwt-decode';
 import './style-modal.css'
 
 const ModalWindow = (props) => {
-    const {img, user, nomination, idName, id, statusId, name, size} = props;
+    const { img, idName, idUser, nomination, nominationId,userName, userLastName,userFatherName, userOrganization,name,statusId, size} = props;
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
-    const [ratingValue, setRatingValue] = useState(props.ratingValue);
+    const [ratingValue, setRatingValue] = useState(props.ratingValuePic);
     const [userRole, setUserRole] = useState(null);
-    const [userInfo, setUserInfo] = useState({
-        firstName: '',
-        secondName: '',
-        fatherName: '',
-        organization:''
-    });
-    const [userOrganization, setUserOrganization] = useState({
-        organization: ''
-    });
-    const [userNomination, setUserNomination] = useState({
-        nomin: ''
-    });
-
     const token = localStorage.getItem("token");
     const decoded = jwt_decode(token);
 
-    const getDataUser = () => {
-        axios.get(`http://127.0.0.1:8080/api/user/${user}`,{
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '',
-                'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
-                'Access-Control-Allow-Headers': '',
-            }
-        }).then((response) => {
-            setUserInfo({
-                firstName: response.data.firstName,
-                secondName: response.data.secondName,
-                fatherName: response.data.fatherName,
-                organization: response.data.organizationId
-            })
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-          
-    }
-    getDataUser()
 
-    const getOrgatization = () => {
-        axios.get(`http://127.0.0.1:8080/api/organization/${userInfo.organization}`,{
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '',
-                'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
-                'Access-Control-Allow-Headers': '',
-            }
-        }).then((response) => {
-            setUserOrganization({
-                organization: response.data.description
-            })
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-          
-    }
-    getOrgatization()
-
-    const getNomination = () => {
-        axios.get(`http://127.0.0.1:8080/api/nomination/${nomination}`,{
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '',
-                'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
-                'Access-Control-Allow-Headers': '',
-            }
-        }).then((response) => {
-            setUserNomination({
-                nomin: response.data.name
-            })
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-          
-    }
-    getNomination()
-    
-    const getRole = () => {
-        axios
-      .post("http://127.0.0.1:8080/api/user/find", { email: decoded.sub }, {
+    const getRole = async () => {
+       axios.post("http://45.8.97.195:8080/api/user/find", { email: decoded.sub }, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
@@ -144,16 +65,16 @@ const ModalWindow = (props) => {
 
       const updateUserRating = (newRating) => {
         const data = {
-          id: id,
-          name: name ,
+          id: idName,
+          name: name,
           size: size,
           base64:img,
           ratingValue: newRating,
-          userId: user,
+          userId: idUser,
           statusId: statusId,
-          nominationId:nomination
+          nominationId:nominationId
         }
-        axios.post('http://127.0.0.1:8080/api/picture/update', data, {
+        axios.post('http://45.8.97.195:8080/api/picture/update', data, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
@@ -163,14 +84,14 @@ const ModalWindow = (props) => {
           }
         })
         .then((response) => {
-          console.log(`Успех для ${props.id}`);
+          alert(`Оценка для ${props.idName} обновлена`);
         }, (error) => {
-          console.log(error);
+          alert(error);
         });
       }
     
     const deletePic = () => {
-        axios.delete(`http://127.0.0.1:8080/api/picture/${id}`,{
+        axios.delete(`http://45.8.97.195:8080/api/picture/${idName}`,{
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`,
@@ -179,6 +100,7 @@ const ModalWindow = (props) => {
               'Access-Control-Allow-Headers': '',
             }})
         .then((response) => {
+          alert(`Картинка ${props.id} удалена`);
           window.location.reload();
         })
         .catch((error) => {
@@ -208,19 +130,19 @@ const ModalWindow = (props) => {
     }
     return(
         <>
-            <div className="modal fade" id={idName} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id={`picInfo${idName}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
             <div className="modal-content">
                 <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">{userNomination.nomin}</h5>
+                <h5 className="modal-title" id="exampleModalLabel">{nomination}</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div className="modal-body">
-                <img className='unitImgModal' src={img} alt="Preview" id={id}/>
-                <p className="FIO">{`${userInfo.secondName} ${userInfo.firstName} ${userInfo.fatherName}`}</p>
-                <p>{userOrganization.organization}</p>
+                <img className='unitImgModal' src={img} alt="Preview" id={idName}/>
+                <p className="FIO">{`${userLastName} ${userName} ${userFatherName}`}</p>
+                <p>{userOrganization}</p>
                 </div>
                 <div className="modal-footer">
                 <p className='ratingValue'>{ratingValue}</p>

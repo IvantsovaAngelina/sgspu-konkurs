@@ -1,8 +1,8 @@
 html,
 body {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	min-height: 100%;
 
 	font-family: 'DM Sans', sans-serif;
 	letter-spacing: -0.5px;
@@ -10,7 +10,8 @@ body {
 }
 
 main {
-    flex-grow:1;
+    grid-row: 2 / span 1;
     margin: 0;
     padding-top: 15px;
+	padding-bottom: 30px;
 }

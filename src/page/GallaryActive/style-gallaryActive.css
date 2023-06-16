@@ -3,6 +3,10 @@ h1{
     margin-bottom: 2%;
 }
 
+.gallMain{
+    margin-bottom: 30px;
+}
+
 .gallActive{
     -webkit-column-count: 3;
     -moz-column-count: 3;
@@ -22,6 +26,12 @@ h1{
 
 .unitPic img{
     width: 100%;
+}
+
+.unitPic p{
+    padding: 0;
+    margin: 0;
+    text-align: center;
 }
 
 @media (max-width: 991px){

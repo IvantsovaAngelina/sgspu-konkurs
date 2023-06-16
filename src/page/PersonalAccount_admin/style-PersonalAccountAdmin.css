@@ -1,20 +1,20 @@
-h1 {
+.title-user {
     font-weight: 700;
     font-size: 20pt;
     line-height: 49px;
     text-align: center;
     text-transform: uppercase;
     color: #1A2F3E;
+    margin: 0;
 }
 
-.registrationP {
+.errorMassage {
     text-align: center;
     font-size: 14pt;
     font-weight: 400;
 }
 
 label {
-  text-align: center;
     font-weight: 700;
     font-size: 14pt;
     color: #000000;
@@ -61,43 +61,34 @@ label {
   }
   
   .btn-submit {
-    width: 50%;
-    margin-top: 5%;
     color: #A8003C;
     background: #FFBCE4;
     border: 3px solid #FC1367;
     border-radius: 13px;
     font-weight: 600;
     margin-bottom: 4%;
-    margin-left: 25%;
   }
 
-  .btn-submit:hover {
-    color:#FFBCE4;
-    background:#FC1367;
-  }
+.fileUp{
+  padding-left: 3%;
+  padding-right: 3%;
+}
 
-  .selectOrg {
-    margin-top: 1%;
-    box-sizing: border-box;
-    font-size: 14pt;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
-    text-align: center;
-    background: #D9D9D9;;
-    border: 1px solid #000000;
-    border-radius: 64px;
-    width: 100%;
-  }
+.btn-submitFile{
+  width: 60%;
+  margin-top: 1%;
+  margin-bottom: 7%;
+  color: #A8003C;
+  background: #FFBCE4;
+  border: 3px solid #FC1367;
+  border-radius: 13px;
+  font-weight: 600;
+}
 
-  .optionOrg{
-    width: 90%;
-  }
-  
-  .title-reg{
-    margin: 0;
-  }
+.userId {
+  display: none;
+}
 
-  hr{
-    margin: 0;
+.userId {
+  display: none;
   }

@@ -11,16 +11,15 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8080/api/auth/signin', { email, password });
+      const response = await axios.post('http://45.8.97.195:8080/api/auth/signin', { email, password });
       const { data } = response;
       localStorage.setItem('token', data.accessToken);
 
-      const userResponse = await axios.get(`http://127.0.0.1:8080/api/user/${response.data.userId}`);
+      const userResponse = await axios.get(`http://45.8.97.195:8080/api/user/${response.data.userId}`);
       const roleId = userResponse.data.roleId;
 
       if (roleId === 1) {
-        // nav(`/accountjury/${data.userId}`);
-        nav(`/account/${data.userId}`);
+        nav(`/accountadmin/${data.userId}`);
         window.location.reload();
       } else if (roleId === 2) {
         nav(`/account/${data.userId}`);
